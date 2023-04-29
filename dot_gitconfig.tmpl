@@ -1,0 +1,57 @@
+[user]
+  email = {{ .email }}
+  name = {{ .name }}
+
+[core]
+  autocrlf = input
+  compression = 9
+  excludesfile = ~/.gitignore_global
+  filemode = false
+
+[merge]
+  log = true
+  ff = false
+
+[push]
+  default = simple
+
+[color]
+  ui = true
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+
+[alias]
+  st = status
+  ci = commit
+  co = checkout
+  br = branch -av
+  changes = "!f() { git log --pretty=format:'* %s' $1..$2; }; f"
+  # Show all of my configured aliases  
+  aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
+  # For when you made that commit a bit too early, amend
+  amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+  # Unstage changes from the index
+  unstage = reset HEAD --
+  # View a pretty git log with branch tree
+  g = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  # Return a list of commit SHA1s
+  l = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
+  # Remove deleted files
+  r = !git ls-files -z --deleted | xargs -0 git rm
+  # Return the repository's root directory (usefull for shell prompts)
+  root = rev-parse --show-toplevel
+  # List all tags
+  tags = tag -l
+  # Start a new local repository and perform initial commit
+  this = !git init && git add . && git commmit -m \"Initial commit.\"
+  # Thin out older metadata within the repository, reduceses filesystem footprint
+  trim = !git reflog expire --expire=now --all && git gc --prune=now
+
+[url "https://github.com/"]
+    insteadOf = gh:
+
+[url "https://gist.github.com/"]
+    insteadOf = gist:
+
