@@ -1,0 +1,25 @@
+#!/usr/bin/env fish
+set FONTS_URLS https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraMono.zip \
+        https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/SourceCodePro.zip \
+        https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
+set TMP_DIR /tmp/fonts
+
+if test ! -d ~/.local/share/fonts
+  mkdir ~/.local/share/fonts
+end
+
+if test ! -d $TMP_DIR
+  mkdir $TMP_DIR
+end
+
+pushd $TMP_DIR
+for font_url in $FONTS_URLS
+  set font_file (echo $font_url | string split '/')[-1]
+  if test ! -f $TMP_DIR/$font_file
+    curl -O -L $font_url
+  end
+  unzip -d ~/.local/share/fonts -o $font_file
+end
+popd
+
+fc-cache -fv
