@@ -1,0 +1,9 @@
+#!/usr/bin/fish
+
+echo -e "\033[0;32m>>>>> Begin Setting Up Fish shell <<<<<\033[0m"
+
+curl -L https://get.oh-my.fish | fish
+omf install https://github.com/catppuccin/fish
+fish_config theme save "Catppuccin Mocha"
+
+echo -e "\033[0;32m>>>>> Finish Setting Up Fish shell <<<<<\033[0m"
