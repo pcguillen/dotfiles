@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+{{ if eq .chezmoi.os "linux" }}
+if ! bitwarden=$(command -v bw) ; then
+  npm install -g @bitwarden/cli
+fi
+{{ end }}
