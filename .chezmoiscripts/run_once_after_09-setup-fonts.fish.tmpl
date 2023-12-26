@@ -1,7 +1,8 @@
 #!/usr/bin/env fish
-set FONTS_URLS https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraMono.zip \
-        https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/SourceCodePro.zip \
-        https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
+set NERD_FONTS_RELEASE v.3.1.1
+set FONTS_URLS https://github.com/ryanoasis/nerd-fonts/releases/download/$NERD_FONTS_RELEASE/FiraMono.zip \
+        https://github.com/ryanoasis/nerd-fonts/releases/download/$NERD_FONTS_RELEASE/SourceCodePro.zip \
+        https://github.com/ryanoasis/nerd-fonts/releases/download/$NERD_FONTS_RELEASE/JetBrainsMono.zip
 set TMP_DIR /tmp/fonts
 
 if test ! -d ~/.local/share/fonts
